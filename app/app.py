@@ -21,6 +21,23 @@ async def add_todo(todo:dict) -> dict:
 	return {"data" : "ToDo has been added"}
 
 # Put --> Update ToDo
+@app.put("/todo/{id}", tags=["todos"])
+async def update_todo(id:int, body:dict) -> dict:
+	for todo in todos:
+		try:
+			if int(todo['id']) == id:
+				todo['Activity'] = body['Activity']
+
+				return {
+					"data":f"Todo number {id} is updated"
+				}
+		except Exception as e:
+			print(e)
+			return {
+					"data":f"ToDo with Id number  {id} was not updated"
+				}
+
+
 # Delete --> Delete ToDO
 todos = [
 	{
