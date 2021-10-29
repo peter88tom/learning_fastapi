@@ -15,6 +15,11 @@ async def get_todo() -> dict:
 	return {"data":todos}
 
 # Post --> Create ToDo
+@app.post("/todo", tags=["todos"])
+async def add_todo(todo:dict) -> dict:
+	todos.append(todo)
+	return {"data" : "ToDo has been added"}
+
 # Put --> Update ToDo
 # Delete --> Delete ToDO
 todos = [
